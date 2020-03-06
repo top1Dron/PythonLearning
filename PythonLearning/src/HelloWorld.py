@@ -3,3 +3,4 @@ def say():
 
 
 say()
+say()
