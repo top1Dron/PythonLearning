@@ -14,12 +14,18 @@ today = targetDir + os.sep + time.strftime('%Y%m%d')
 # current time as a name for zip file
 now = time.strftime('%H%M%S')
 
+comment = input('Enter comment --> ')
+
+# all files parse to zip with datetime name
+if len(comment) == 0:
+    target = today + os.sep + now + '.zip'
+else:
+    target = today + os.sep + now + '_' +\
+        comment.replace(' ', '_') + '.zip'
+
 if not os.path.exists(today):
     os.mkdir(today)  # creating subpackage for keeping backup
     print("Subpackage created!")
-
-# all files parse to zip with datetime name
-target = today + os.sep + now + '.zip'
 
 # zip command in command line for creating backup zip file
 zip_command = "zip -qr {} {}".format(target, ' '.join(source))
