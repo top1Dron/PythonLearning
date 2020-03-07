@@ -1,6 +1,8 @@
 import os
 import time
 
+__version__ = 1.0
+
 # files and packages will be in list
 source = ['"D:\\мемы"']
 
