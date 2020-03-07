@@ -1,10 +1,11 @@
 import os
 import time
+import zipfile
 
-__version__ = 1.0
+__version__ = 4.0
 
 # files and packages will be in list
-source = ['"D:\\мемы"']
+source = ['D:\\мемы\\', 'D:\\random files\\']
 
 # backup dir
 targetDir = 'D:\\BackUpPython'
@@ -20,18 +21,20 @@ comment = input('Enter comment --> ')
 if len(comment) == 0:
     target = today + os.sep + now + '.zip'
 else:
-    target = today + os.sep + now + '_' +\
-        comment.replace(' ', '_') + '.zip'
+    target = today + os.sep + now + '_' + \
+             comment.replace(' ', '_') + '.zip'
 
 if not os.path.exists(today):
     os.mkdir(today)  # creating subpackage for keeping backup
     print("Subpackage created!")
 
-# zip command in command line for creating backup zip file
-zip_command = "zip -qr {} {}".format(target, ' '.join(source))
-
-# start creating back up
-if os.system(zip_command) == 0:
-    print('Backup zip file created in directory:', target)
-else:
-    print('Backup failed.')
+# creating new zip file
+with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as newZip:
+    # start creating back up
+    for directory in source:
+        # list of all files, folders in targetDir folder
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                newZip.write(os.path.join(root, file))
+                print('File ' + file + ' added to zip successfully')
+print('Backup zip file created in directory:', target)
