@@ -7,11 +7,21 @@ __version__ = 1.0
 source = ['"D:\\мемы"']
 
 # backup dir
-targetDir = '"D:\\BackUpPython"'
+targetDir = 'D:\\BackUpPython'
 
-# all files parse to zip with date name
-target = targetDir + os.sep + time.strftime('%Y%m%d%H%M%S') + '.zip'
+# current date as subpackage in main package
+today = targetDir + os.sep + time.strftime('%Y%m%d')
+# current time as a name for zip file
+now = time.strftime('%H%M%S')
 
+if not os.path.exists(today):
+    os.mkdir(today)  # creating subpackage for keeping backup
+    print("Subpackage created!")
+
+# all files parse to zip with datetime name
+target = today + os.sep + now + '.zip'
+
+# zip command in command line for creating backup zip file
 zip_command = "zip -qr {} {}".format(target, ' '.join(source))
 
 # start creating back up
