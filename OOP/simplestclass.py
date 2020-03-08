@@ -1,6 +1,7 @@
 class Person:
-    pass  # empty block
+    def sayHi(self):
+        print("Hi, how it's going on?")
 
 
 p = Person()
-print(p)
+p.sayHi()
