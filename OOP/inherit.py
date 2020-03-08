@@ -1,4 +1,7 @@
-class SchoolMember:
+from abc import *
+
+
+class SchoolMember(metaclass=ABCMeta):
     """Represents all people in school."""
 
     def __init__(self, name, age):
@@ -6,6 +9,7 @@ class SchoolMember:
         self.age = age
         print('Created SchoolMember: {0}'.format(self.name))
 
+    @abstractmethod
     def tell(self):
         """gets info about SchoolMember"""
         print('Name: {0}\nAge: {1}'.format(self.name, self.age))
@@ -45,3 +49,6 @@ print()
 members = [teacher, student]
 for member in members:
     member.tell()  # works as for teacher and for students
+
+# m = SchoolMember('abc', 10)  # it will give a TypeError: Can't instantiate abstract class
+# SchoolMember with abstract methods tell
