@@ -1,5 +1,7 @@
 import os
-import pyriodic
+
+
+# from pyriodic import Scheduler, DatetimesJob
 
 
 def createRestorePoint():
@@ -12,9 +14,13 @@ def createRestorePoint():
     os.system(default)
 
 
-task = pyriodic.Scheduler()
-task.add_job(pyriodic.DatetimesJob(
-    createRestorePoint,
-    when='7:40 pm',
-    interval='daily'
-))
+createRestorePoint()
+# task = Scheduler()
+# print(task.add_job(DatetimesJob(
+#     createRestorePoint,
+#     when='07:00 pm',
+#     interval='daily',
+#     name='restore point'
+# )))
+#
+# print(task.next_run_times())
