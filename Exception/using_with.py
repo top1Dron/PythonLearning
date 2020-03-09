@@ -3,4 +3,4 @@ try:
         for line in f:
             print(line, end='')
 except FileNotFoundError:
-    print('Eror 404: File not found!')
+    print('Error 404: File not found!')
